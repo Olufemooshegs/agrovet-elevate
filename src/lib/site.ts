@@ -12,7 +12,15 @@ export const site = {
   yearFounded: 2013,
 };
 
-export const productCategories = [
+type ProductCat = {
+  slug: string;
+  name: string;
+  group: string;
+  subgroup?: string;
+  blurb: string;
+};
+
+export const productCategories: readonly ProductCat[] = [
   {
     slug: "live-vaccines",
     name: "Live Vaccines",
