@@ -72,6 +72,6 @@ export const productCategories: readonly ProductCat[] = [
     blurb:
       "Farm-grade disinfectants for hatcheries, pens, equipment and vehicle wash bays.",
   },
-] as const;
+];
 
-export type ProductCategory = (typeof productCategories)[number];
+export type ProductCategory = ProductCat;
