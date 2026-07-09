@@ -108,23 +108,7 @@ function HomePage() {
       </section>
 
       {/* Pillars */}
-      <section className="bg-forest text-ivory">
-        <div className="container-x py-20">
-          <div className="max-w-2xl">
-            <div className="eyebrow text-sage">What we stand for</div>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl">Four pillars that shape every decision.</h2>
-          </div>
-          <div className="mt-14 grid gap-px bg-ivory/10 sm:grid-cols-2 lg:grid-cols-4 rounded-lg overflow-hidden">
-            {pillars.map((p) => (
-              <div key={p.n} className="bg-forest p-8">
-                <div className="text-sage text-sm font-medium">{p.n}</div>
-                <h3 className="mt-4 font-display text-2xl">{p.title}</h3>
-                <p className="mt-3 text-sm text-ivory/70 leading-relaxed">{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PillarsSection />
 
       {/* Product categories */}
       <section className="border-b border-stone">
