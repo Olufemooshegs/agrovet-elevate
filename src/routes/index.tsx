@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { site, productCategories } from "@/lib/site";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { PillarsSection } from "@/components/PillarsSection";
 import logo from "@/assets/fdh-logo.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -19,13 +21,6 @@ export const Route = createFileRoute("/")({
   }),
   component: HomePage,
 });
-
-const pillars = [
-  { n: "01", title: "Reputable", body: "A trusted veterinary pharmaceutical marketing company delivering innovative, high-quality products." },
-  { n: "02", title: "Efficient", body: "Product development, distribution, data-driven insights and regulatory compliance support." },
-  { n: "03", title: "Industry Compliant", body: "We adhere to every regulatory guideline while maintaining integrity and quality." },
-  { n: "04", title: "International Partnerships", body: "Exclusive collaboration with leading global manufacturers, expanding access to innovation." },
-];
 
 const whyUs = [
   { title: "Proven since 2013", body: "Over a decade serving Nigerian veterinarians, farms and distributors." },
@@ -72,7 +67,7 @@ function HomePage() {
           </div>
           <div className="lg:col-span-5">
             <div className="relative">
-              <ImagePlaceholder label="Hero image — veterinary team on farm" aspect="4/5" />
+              <HeroCarousel aspect="4/5" />
               <div className="hidden sm:flex absolute -bottom-6 -left-6 items-center gap-3 rounded-lg border border-stone bg-ivory p-4 shadow-sm">
                 <img src={logo.url} alt="" width={44} height={44} className="h-11 w-11 rounded-full" />
                 <div className="text-xs">
@@ -113,23 +108,7 @@ function HomePage() {
       </section>
 
       {/* Pillars */}
-      <section className="bg-forest text-ivory">
-        <div className="container-x py-20">
-          <div className="max-w-2xl">
-            <div className="eyebrow text-sage">What we stand for</div>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl">Four pillars that shape every decision.</h2>
-          </div>
-          <div className="mt-14 grid gap-px bg-ivory/10 sm:grid-cols-2 lg:grid-cols-4 rounded-lg overflow-hidden">
-            {pillars.map((p) => (
-              <div key={p.n} className="bg-forest p-8">
-                <div className="text-sage text-sm font-medium">{p.n}</div>
-                <h3 className="mt-4 font-display text-2xl">{p.title}</h3>
-                <p className="mt-3 text-sm text-ivory/70 leading-relaxed">{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PillarsSection />
 
       {/* Product categories */}
       <section className="border-b border-stone">

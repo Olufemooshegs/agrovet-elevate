@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/PageHero";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { TeamAlbum } from "@/components/TeamAlbum";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
@@ -81,7 +82,9 @@ function About() {
         </div>
       </section>
 
-      <section className="container-x py-20 grid gap-8 sm:grid-cols-3">
+      <TeamAlbum />
+
+      <section className="container-x pb-24 grid gap-8 sm:grid-cols-3">
         <ImagePlaceholder label="Photo — warehouse / cold chain" aspect="1/1" />
         <ImagePlaceholder label="Photo — field / farm visit" aspect="1/1" />
         <ImagePlaceholder label="Photo — team at work" aspect="1/1" />
