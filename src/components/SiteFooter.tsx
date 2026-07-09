@@ -28,6 +28,7 @@ export function SiteFooter() {
             <li><Link to="/about" className="hover:text-forest">About Us</Link></li>
             <li><Link to="/services" className="hover:text-forest">Services</Link></li>
             <li><Link to="/events" className="hover:text-forest">Events</Link></li>
+            <li><Link to="/blog" className="hover:text-forest">Blog / News</Link></li>
             <li><Link to="/contact" className="hover:text-forest">Contact</Link></li>
           </ul>
         </div>

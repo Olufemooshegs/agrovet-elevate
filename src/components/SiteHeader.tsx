@@ -8,6 +8,7 @@ const nav = [
   { to: "/products", label: "Products" },
   { to: "/services", label: "Services" },
   { to: "/events", label: "Events" },
+  { to: "/blog", label: "Blog / News" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -47,13 +48,13 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-2">
           {nav.map((n) => (
             <Link
               key={n.to}
               to={n.to}
-              className="text-sm text-charcoal/80 hover:text-forest transition-colors"
-              activeProps={{ className: "text-forest font-medium" }}
+              className="relative rounded-xl px-4 py-2 text-sm text-charcoal/80 transition-all duration-200 hover:bg-cream hover:text-forest"
+              activeProps={{ className: "bg-forest/10 text-forest font-medium shadow-sm ring-1 ring-forest/20" }}
               activeOptions={{ exact: n.to === "/" }}
             >
               {n.label}
@@ -90,14 +91,14 @@ export function SiteHeader() {
 
       {open && (
         <div className="lg:hidden border-t border-stone bg-ivory">
-          <nav className="container-x flex flex-col py-4">
+          <nav className="container-x flex flex-col py-4 gap-2">
             {nav.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="py-3 text-base text-charcoal/90 border-b border-stone/60 last:border-none"
-                activeProps={{ className: "text-forest font-medium" }}
+                className="rounded-xl px-4 py-3 text-base text-charcoal/90 transition-colors hover:bg-cream"
+                activeProps={{ className: "bg-forest/10 text-forest font-medium ring-1 ring-forest/20" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
                 {n.label}
@@ -106,7 +107,7 @@ export function SiteHeader() {
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
-              className="mt-4 inline-flex items-center justify-center rounded-full bg-forest px-5 py-3 text-sm font-medium text-ivory"
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-forest px-5 py-3 text-sm font-medium text-ivory"
             >
               Get in touch
             </Link>
