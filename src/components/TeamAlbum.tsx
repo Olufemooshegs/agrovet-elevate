@@ -1,6 +1,6 @@
 import { ImagePlaceholder } from "./ImagePlaceholder";
 
-type Member = { name?: string; role: string; label: string; aspect?: string };
+type Member = { name?: string; role: string; region?: string; label: string; aspect?: string };
 
 const leadership: Member[] = [
   {
@@ -10,6 +10,7 @@ const leadership: Member[] = [
     aspect: "3/4",
   },
   {
+    name: "Mrs. Grace Akinwale",
     role: "Assistant Managing Director",
     label: "Portrait — Assistant Managing Director",
     aspect: "3/4",
@@ -17,15 +18,64 @@ const leadership: Member[] = [
 ];
 
 const marketing: Member[] = [
-  { role: "National Marketing Manager", label: "Portrait — National Marketing Manager", aspect: "3/4" },
-  { role: "South West Region Marketing Manager", label: "Portrait — South West Regional Marketing Manager", aspect: "3/4" },
+  {
+    name: "Dr. Abimbola Oyewale",
+    role: "National Marketing Manager",
+    label: "Portrait — National Marketing Manager",
+    aspect: "3/4",
+  },
+  {
+    name: "Mr. Oluwole Adenuga",
+    role: "South West Region Marketing Manager",
+    label: "Portrait — South West Regional Marketing Manager",
+    aspect: "3/4",
+  },
 ];
 
-const sales: Member[] = Array.from({ length: 6 }).map((_, i) => ({
-  role: `Sales Manager`,
-  label: `Portrait — Sales Manager ${i + 1}`,
-  aspect: "1/1",
-}));
+const sales: Member[] = [
+  {
+    name: "Akanni Taiwo Babatunde",
+    role: "Sales Manager",
+    region: "Oyo, Ondo, Ekiti, Osun & Kwara",
+    label: "Portrait — Sales Manager 1",
+    aspect: "1/1",
+  },
+  {
+    name: "Oluwatobi Adepoju",
+    role: "Sales Manager",
+    region: "Edo & Delta",
+    label: "Portrait — Sales Manager 2",
+    aspect: "1/1",
+  },
+  {
+    name: "Awoniyi Quyum",
+    role: "Sales Manager",
+    region: "Bauchi, Gombe, Adamawa & Taraba",
+    label: "Portrait — Sales Manager 3",
+    aspect: "1/1",
+  },
+  {
+    name: "Ogbodo Chukwudi Lazarus",
+    role: "Sales Manager",
+    region: "Enugu, Anambra & Ebonyi",
+    label: "Portrait — Sales Manager 4",
+    aspect: "1/1",
+  },
+  {
+    name: "Lukman Raji Mustapha",
+    role: "Sales Manager",
+    region: "Kaduna, Kebbi, Zamfara, Katsina (Funtua) & Niger",
+    label: "Portrait — Sales Manager 5",
+    aspect: "1/1",
+  },
+  {
+    name: "Adelakun Adedotun Abdullahi",
+    role: "Sales Manager",
+    region: "Rivers, Abia and Environs",
+    label: "Portrait — Sales Manager 6",
+    aspect: "1/1",
+  },
+];
 
 const admin: Member[] = [
   ...Array.from({ length: 2 }).map((_, i) => ({
@@ -55,6 +105,11 @@ function MemberCard({ m, size = "md" }: { m: Member; size?: "lg" | "md" | "sm" }
         <div className={`${m.name ? "mt-0.5 text-xs" : "text-sm text-forest"} uppercase tracking-[0.18em] text-muted-foreground`}>
           {m.role}
         </div>
+        {m.region && (
+          <div className="mt-1.5 text-[11px] leading-snug text-charcoal/60">
+            {m.region}
+          </div>
+        )}
       </figcaption>
       {/* tape */}
       <span
