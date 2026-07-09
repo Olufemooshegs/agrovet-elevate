@@ -22,13 +22,6 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const pillars = [
-  { n: "01", title: "Reputable", body: "A trusted veterinary pharmaceutical marketing company delivering innovative, high-quality products." },
-  { n: "02", title: "Efficient", body: "Product development, distribution, data-driven insights and regulatory compliance support." },
-  { n: "03", title: "Industry Compliant", body: "We adhere to every regulatory guideline while maintaining integrity and quality." },
-  { n: "04", title: "International Partnerships", body: "Exclusive collaboration with leading global manufacturers, expanding access to innovation." },
-];
-
 const whyUs = [
   { title: "Proven since 2013", body: "Over a decade serving Nigerian veterinarians, farms and distributors." },
   { title: "Exclusive distribution", body: "Sole distributor for reputable international veterinary manufacturers." },
@@ -74,7 +67,7 @@ function HomePage() {
           </div>
           <div className="lg:col-span-5">
             <div className="relative">
-              <ImagePlaceholder label="Hero image — veterinary team on farm" aspect="4/5" />
+              <HeroCarousel aspect="4/5" />
               <div className="hidden sm:flex absolute -bottom-6 -left-6 items-center gap-3 rounded-lg border border-stone bg-ivory p-4 shadow-sm">
                 <img src={logo.url} alt="" width={44} height={44} className="h-11 w-11 rounded-full" />
                 <div className="text-xs">
