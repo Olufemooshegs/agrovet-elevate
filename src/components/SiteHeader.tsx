@@ -32,21 +32,40 @@ export function SiteHeader() {
       }`}
     >
       <div className="container-x flex h-20 items-center justify-between gap-6">
-        <Link to="/" className="flex items-center gap-3 min-w-0" onClick={() => setOpen(false)}>
-          <img
-            src={logo.url}
-            alt="FDH Agrovet Nigeria Limited"
-            width={44}
-            height={44}
-            className="h-11 w-11 rounded-full shrink-0"
-          />
-          <span className="hidden sm:flex flex-col leading-tight min-w-0">
-            <span className="font-display text-lg text-forest truncate">FDH Agrovet</span>
-            <span className="text-[0.65rem] tracking-[0.22em] uppercase text-muted-foreground">
-              Nigeria Limited
+        <div className="flex items-center gap-3">
+          <button
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone text-forest"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {open ? (
+                <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+              ) : (
+                <>
+                  <path d="M4 7h16" strokeLinecap="round" />
+                  <path d="M4 17h16" strokeLinecap="round" />
+                </>
+              )}
+            </svg>
+          </button>
+          <Link to="/" className="flex items-center gap-3 min-w-0" onClick={() => setOpen(false)}>
+            <img
+              src={logo.url}
+              alt="FDH Agrovet Nigeria Limited"
+              width={44}
+              height={44}
+              className="h-11 w-11 rounded-full shrink-0"
+            />
+            <span className="hidden sm:flex flex-col leading-tight min-w-0">
+              <span className="font-display text-lg text-forest truncate">FDH Agrovet</span>
+              <span className="text-[0.65rem] tracking-[0.22em] uppercase text-muted-foreground">
+                Nigeria Limited
+              </span>
             </span>
-          </span>
-        </Link>
+          </Link>
+        </div>
 
         <nav className="hidden lg:flex items-center gap-2">
           {nav.map((n) => (
@@ -69,23 +88,6 @@ export function SiteHeader() {
           >
             Get in touch
           </Link>
-          <button
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            className="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone text-forest"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              {open ? (
-                <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
-              ) : (
-                <>
-                  <path d="M4 7h16" strokeLinecap="round" />
-                  <path d="M4 17h16" strokeLinecap="round" />
-                </>
-              )}
-            </svg>
-          </button>
         </div>
       </div>
 
