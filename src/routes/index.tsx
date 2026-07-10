@@ -3,6 +3,8 @@ import { site, productCategories } from "@/lib/site";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { PillarsSection } from "@/components/PillarsSection";
+import { AnimatedHeading } from "@/components/AnimatedHeading";
+import { WhyUsCarousel } from "@/components/WhyUsCarousel";
 import logo from "@/assets/fdh-logo.asset.json";
 
 export const Route = createFileRoute("/")({
