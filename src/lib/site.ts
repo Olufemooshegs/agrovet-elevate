@@ -10,6 +10,11 @@ export const site = {
   email: "info@fdhagrovet.com.ng",
   address: "Lagos, Nigeria",
   yearFounded: 2013,
+  social: {
+    facebook: "https://www.facebook.com/fdhagrovet.ng",
+    linkedin: "",
+    instagram: "",
+  },
 };
 
 type ProductCat = {

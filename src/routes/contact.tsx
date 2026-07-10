@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageHero } from "@/components/PageHero";
+import { SocialLinks } from "@/components/SocialLinks";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
@@ -61,6 +62,12 @@ function Contact() {
               <div>
                 <dt className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Hours</dt>
                 <dd className="mt-1 text-charcoal/80">Mon – Fri · 9:00 – 17:00 WAT</dd>
+              </div>
+              <div>
+                <dt className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Follow us</dt>
+                <dd className="mt-3">
+                  <SocialLinks />
+                </dd>
               </div>
             </dl>
           </div>

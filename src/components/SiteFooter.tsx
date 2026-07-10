@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { site, productCategories } from "@/lib/site";
+import { SocialLinks } from "@/components/SocialLinks";
 import logo from "@/assets/fdh-logo.asset.json";
 
 export function SiteFooter() {
@@ -20,6 +21,7 @@ export function SiteFooter() {
             A Nigerian veterinary pharmaceutical marketing company delivering
             innovative animal-health solutions since {site.yearFounded}.
           </p>
+          <SocialLinks className="mt-6" />
         </div>
 
         <div>
