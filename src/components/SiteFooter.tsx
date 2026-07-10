@@ -5,7 +5,7 @@ import logo from "@/assets/fdh-logo.asset.json";
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-stone bg-cream">
-      <div className="container-x py-16 grid gap-12 lg:grid-cols-4">
+      <div className="container-x py-16 grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-12">
         <div>
           <div className="flex items-center gap-3">
             <img src={logo.url} alt="" width={44} height={44} className="h-11 w-11 rounded-full" />
