@@ -63,6 +63,12 @@ function Contact() {
                 <dt className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Hours</dt>
                 <dd className="mt-1 text-charcoal/80">Mon – Fri · 9:00 – 17:00 WAT</dd>
               </div>
+              <div>
+                <dt className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Follow us</dt>
+                <dd className="mt-3">
+                  <SocialLinks />
+                </dd>
+              </div>
             </dl>
           </div>
         </div>
