@@ -39,9 +39,10 @@ function HomePage() {
         <div className="container-x pt-16 pb-20 sm:pt-24 sm:pb-28 grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7">
             <div className="eyebrow">Est. {site.yearFounded} · Nigeria</div>
-            <h1 className="mt-5 font-display text-5xl sm:text-7xl text-forest leading-[0.98]">
-              Advancing animal<br />health across Nigeria.
-            </h1>
+            <AnimatedHeading
+              lines={["Advancing animal", "health across Nigeria."]}
+              className="mt-5 text-5xl sm:text-7xl"
+            />
             <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
               FDH Agrovet is a veterinary pharmaceutical marketing company sourcing and
               distributing high-quality vaccines, drugs and biosecurity products for the
@@ -151,7 +152,7 @@ function HomePage() {
             <div className="eyebrow">Why choose us</div>
             <h2 className="mt-4 font-display text-4xl text-forest">Reliability you can build a farm on.</h2>
             <div className="mt-8">
-              <ImagePlaceholder label="Warehouse & cold-chain photo" aspect="4/3" />
+              <WhyUsCarousel aspect="4/3" />
             </div>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
