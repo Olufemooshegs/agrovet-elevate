@@ -99,3 +99,20 @@ export function SiteFooter() {
     </footer>
   );
 }
+
+function SocialIcon({ href, label, path }: { href: string; label: string; path: string }) {
+  if (!href) return null;
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-stone bg-ivory text-forest transition-all hover:-translate-y-0.5 hover:border-forest hover:bg-forest hover:text-ivory"
+    >
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden>
+        <path d={path} />
+      </svg>
+    </a>
+  );
+}
