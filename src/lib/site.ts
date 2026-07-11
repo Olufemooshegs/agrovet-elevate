@@ -11,9 +11,9 @@ export const site = {
   address: "Ibadan, Oyo State",
   yearFounded: 2013,
   social: {
-    facebook: "https://www.facebook.com/fdhagrovet.ng",
-    linkedin: "",
-    instagram: "",
+    facebook: "https://www.facebook.com/fdhagrovet.ng/",
+    linkedin: "https://www.linkedin.com/company/fdh-agrovet-nigeria-limited",
+    instagram: "https://www.instagram.com/fdhagrovet.ng/",
   },
 };
 
