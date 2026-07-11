@@ -8,7 +8,7 @@ export const site = {
   whatsappIntl: "+2349019463255",
   whatsappLink: "https://wa.me/2349019463255",
   email: "info@fdhagrovet.com.ng",
-  address: "Lagos, Nigeria",
+  address: "Ibadan, Oyo State",
   yearFounded: 2013,
   social: {
     facebook: "https://www.facebook.com/fdhagrovet.ng",
