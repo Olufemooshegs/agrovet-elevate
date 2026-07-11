@@ -1,7 +1,8 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { Breadcrumbs, PageHero } from "@/components/PageHero";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
-import { productCategories, site } from "@/lib/site";
+import { AnimalChip } from "@/components/AnimalChip";
+import { productCategories, products, categoryAnimals, site } from "@/lib/site";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -40,13 +41,8 @@ export const Route = createFileRoute("/products/$slug")({
 
 function ProductCategoryPage() {
   const { category } = Route.useLoaderData();
-
-  // Sample placeholder products per category (editable later)
-  const samples = Array.from({ length: 6 }).map((_, i) => ({
-    name: `${category.name.replace(/s$/, "")} ${String.fromCharCode(65 + i)}`,
-    use: sampleUse(category.slug, i),
-    target: sampleTarget(category.slug),
-  }));
+  const items = products.filter((p) => p.category === category.slug);
+  const heroAnimals = categoryAnimals[category.slug] ?? [];
 
   return (
     <>
@@ -63,109 +59,96 @@ function ProductCategoryPage() {
         intro={category.blurb}
       />
 
-      <section className="container-x py-16 grid gap-10 lg:grid-cols-12">
-        <div className="lg:col-span-4">
-          <ImagePlaceholder label={`${category.name} — product photography`} aspect="3/4" />
-          <div className="mt-6 rounded-lg border border-stone bg-cream p-6 text-sm">
-            <div className="eyebrow">Need this range?</div>
-            <p className="mt-3 text-charcoal/80">
-              Contact our team for availability, pricing and distribution across Nigeria.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Link to="/contact" className="inline-flex items-center rounded-full bg-forest px-4 py-2 text-xs font-medium text-ivory hover:bg-moss">
-                Request info
-              </Link>
-              <a href={site.whatsappLink} className="inline-flex items-center rounded-full border border-forest/20 px-4 py-2 text-xs font-medium text-forest hover:bg-stone/60">
-                WhatsApp
-              </a>
-            </div>
-          </div>
+      {/* Hero animal strip */}
+      <section className="container-x -mt-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {heroAnimals.slice(0, 4).map((a) => (
+            <ImagePlaceholder key={a} label={`${a} photo`} aspect="1/1" />
+          ))}
+          {heroAnimals.length < 4 &&
+            Array.from({ length: 4 - heroAnimals.length }).map((_, i) => (
+              <ImagePlaceholder key={`f-${i}`} label={`${category.name} photo`} aspect="1/1" />
+            ))}
+        </div>
+      </section>
+
+      {/* Product cards */}
+      <section className="container-x py-16">
+        <h2 className="font-display text-3xl text-forest">Products in this range</h2>
+        <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
+          {items.length} products currently listed. Contact us for full technical data sheets,
+          pack sizes and pricing.
+        </p>
+
+        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+          {items.map((p) => (
+            <article
+              key={p.slug}
+              className="relative flex flex-col rounded-2xl bg-white border border-stone shadow-[0_10px_30px_-15px_rgba(31,59,45,0.25)] overflow-hidden"
+            >
+              <div className="relative">
+                <ImagePlaceholder
+                  label={`${p.name} product photo`}
+                  aspect="16/10"
+                  className="rounded-none border-0 border-b border-stone"
+                />
+                <div className="absolute top-3 left-3 rounded-full bg-forest/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ivory">
+                  {category.group}
+                </div>
+              </div>
+
+              <div className="flex flex-col flex-1 p-6">
+                <h3 className="font-display text-xl text-forest">{p.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">
+                  {p.blurb}
+                </p>
+
+                <div className="mt-4">
+                  <div className="eyebrow mb-2 text-forest/70">Recommended for</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.targets.map((t) => (
+                      <AnimalChip key={t} animal={t} />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-6 flex items-center justify-between gap-3 pt-4 border-t border-stone">
+                  <div className="text-xs text-charcoal/60">Ref: {p.slug.toUpperCase()}</div>
+                  <a
+                    href={site.whatsappLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-full bg-forest px-4 py-2 text-xs font-semibold text-ivory hover:bg-moss transition-colors"
+                  >
+                    Enquire
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
 
-        <div className="lg:col-span-8">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {samples.map((p) => (
-              <article key={p.name} className="rounded-lg border border-stone bg-ivory p-6">
-                <div className="eyebrow text-forest/70">{category.group}</div>
-                <h3 className="mt-2 font-display text-xl text-forest">{p.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.use}</p>
-                <div className="mt-4 text-xs text-charcoal/60">Target: {p.target}</div>
-              </article>
-            ))}
+        <div className="mt-10 rounded-2xl border border-stone bg-cream p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <div className="eyebrow text-forest/70">Need something not listed?</div>
+            <p className="mt-2 font-display text-2xl text-forest">Talk to our veterinary team.</p>
           </div>
-          <p className="mt-6 text-xs text-muted-foreground">
-            Sample listings shown for layout. Real product data can be added on request.
-          </p>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              to="/contact"
+              className="inline-flex items-center rounded-full bg-forest px-5 py-2.5 text-sm font-medium text-ivory hover:bg-moss"
+            >
+              Contact us
+            </Link>
+            <a
+              href={site.whatsappLink}
+              className="inline-flex items-center rounded-full border border-forest/20 px-5 py-2.5 text-sm font-medium text-forest hover:bg-stone/60"
+            >
+              WhatsApp
+            </a>
+          </div>
         </div>
       </section>
     </>
   );
-}
-
-function sampleUse(slug: string, i: number) {
-  const map: Record<string, string[]> = {
-    "live-vaccines": [
-      "Live attenuated vaccine for Newcastle Disease prevention.",
-      "Live vaccine against Infectious Bursal Disease (Gumboro).",
-      "Live vaccine against Infectious Bronchitis.",
-      "Live Fowl Pox vaccine for young birds.",
-      "Combined live vaccine for broad respiratory protection.",
-      "Live vaccine for early Marek's Disease protection.",
-    ],
-    "oil-vaccines": [
-      "Inactivated oil-emulsion vaccine against ND + IB.",
-      "Inactivated vaccine for EDS 76 in layers.",
-      "Multivalent oil vaccine for breeding flocks.",
-      "Inactivated vaccine against Avian Influenza (H9).",
-      "Long-duration inactivated ND vaccine.",
-      "Combined inactivated vaccine for layer performance.",
-    ],
-    "livestock-vaccines": [
-      "Vaccine against PPR in small ruminants.",
-      "Vaccine against Contagious Bovine Pleuropneumonia.",
-      "Foot and Mouth Disease vaccine.",
-      "Blackleg vaccine for cattle.",
-      "Anthrax spore vaccine for livestock.",
-      "Brucellosis vaccine for cattle herds.",
-    ],
-    "canine-vaccines": [
-      "Rabies vaccine — annual booster.",
-      "DHPPi core vaccine for dogs.",
-      "Leptospira canine vaccine.",
-      "Kennel cough (Bordetella) vaccine.",
-      "Puppy primary series vaccine.",
-      "Multivalent canine booster.",
-    ],
-    poultry: [
-      "Broad-spectrum antibiotic for poultry.",
-      "Coccidiostat for prevention of coccidiosis.",
-      "Multivitamin & electrolyte oral solution.",
-      "Antistress liver support formula.",
-      "Growth performance premix.",
-      "Deworming solution for poultry.",
-    ],
-    "large-animal-drugs": [
-      "Broad-spectrum injectable antibiotic.",
-      "Anti-parasitic injection for cattle.",
-      "Mineral & vitamin supplement.",
-      "NSAID for pain and inflammation.",
-      "Calcium & magnesium solution for milk fever.",
-      "Trypanocide for cattle.",
-    ],
-    disinfectant: [
-      "Broad-spectrum farm disinfectant concentrate.",
-      "Footbath disinfectant for biosecurity gates.",
-      "Hatchery-grade fumigant.",
-      "Vehicle wash disinfectant.",
-      "Water-line sanitiser for poultry houses.",
-      "Equipment and surface sanitiser.",
-    ],
-  };
-  return map[slug]?.[i] ?? "Veterinary product placeholder.";
-}
-function sampleTarget(slug: string) {
-  if (slug.includes("canine")) return "Dogs";
-  if (slug.includes("livestock") || slug === "large-animal-drugs") return "Cattle, sheep, goats";
-  if (slug === "disinfectant") return "Farm, hatchery, equipment";
-  return "Poultry";
 }

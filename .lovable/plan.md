@@ -1,79 +1,53 @@
-## FDH Agrovet Nigeria — Premium Corporate Website
+# Restructure Products Section
 
-A full redesign of fdhagrovet.com.ng on the project's TanStack Start stack (React + TS + Tailwind v4 + SSR). Content is faithfully carried over from the old site; every page is rebuilt with a modern, restrained corporate aesthetic — no cartoon illustrations, no flashy gradients.
+## New browse flow
 
-### Design direction
+```
+/products              → one card per product TYPE (7 types)
+/products/$slug        → grid of individual PRODUCTS in that type (≈4 each)
+                         + short description + target animal chip + animal photo
+```
 
-- **Palette (deep, editorial green + warm neutrals):**
-  - Forest `#1F3B2D` (primary), Moss `#2E5D3A` (secondary), Sage highlight `#7FA97F`
-  - Cream `#F6F2E9` background, Ivory `#FFFDF8`, Charcoal `#1A1A1A` text, Stone `#E9E4D8` borders
-- **Typography:** Instrument Serif (display headlines) + Inter (body/UI). Tight leading on display, generous body leading.
-- **Layout language:** wide max-widths (1280–1440), 12-col grid, generous whitespace, thin hairline dividers, small caps eyebrows, subtle motion only (fade/slide on scroll), no gradients except one soft hero wash.
-- **Imagery:** clean placeholder blocks (labeled, aspect-locked) throughout About + Home so real photos can be dropped in later.
-- **Logo:** uploaded FDH Agro logo used in header, footer, favicon, and OG image.
+## 1. `/products` index — "one of each type"
 
-### Information architecture (mirrors old site)
+Replace the grouped list with a single clean grid of 7 category cards (Live Vaccines, Oil Vaccines, Livestock Vaccines, Canine Vaccines, Poultry Drugs, Large Animal Drugs, Disinfectants). Each card shows:
+- Category name + group tag (Vaccines / Drugs / Biosecurity)
+- Short blurb
+- A representative animal illustration/photo (chicken for poultry types, cow for livestock, dog for canine, mixed farm for disinfectant)
+- "View products →"
 
-- `/` Home
-- `/about` About Us
-- `/products` Products overview (grid of categories)
-  - `/products/live-vaccines`
-  - `/products/oil-vaccines`
-  - `/products/livestock-vaccines`
-  - `/products/canine-vaccines`
-  - `/products/poultry`
-  - `/products/large-animal-drugs`
-  - `/products/disinfectant`
-- `/services` Services
-- `/events` Events
-- `/contact` Contact
+## 2. `/products/$slug` — product cards in the attached style
 
-Each product category page shows a header, category description, and a grid of 4–6 sample product placeholder cards (name, use, target animal) that can be edited later.
+Redesign into a stacked/floating card grid matching the reference (rounded white cards, soft shadow, category chip top-left, heart/save icon top-right optional, footer row with target animal + CTA). Each type gets **4 real product cards** with:
+- Product name (e.g. "IMMUNO IgY Booster")
+- Short description (1–2 lines)
+- **Target animal chip** with matching mini-icon: Broilers 🐔, Layers 🥚, Cattle 🐄, Goat 🐐, Sheep 🐑, Dogs 🐕
+- Small animal photo strip / thumbnail on the card
+- "Enquire" button → WhatsApp / Contact
 
-### Page contents
+Above the grid: category hero with a large animal photo placeholder (e.g. cow herd for Livestock Vaccines, poultry house for Poultry Drugs).
 
-**Home**
-- Hero: logo mark + tagline "Advancing animal health across Nigeria", short intro, two CTAs (Explore Products / Contact Us), placeholder hero image right side.
-- Company positioning strip (est. 2013, veterinary pharmaceutical marketing).
-- Four pillars from old site: Reputable, Efficient, Industry Compliant, International Partnerships.
-- Product categories grid (7 categories, each with icon + link).
-- Why choose us (Trust, Quality, Compliance, Global partners).
-- Partners logo strip (10 placeholder tiles).
-- Vision / Mission / Core Values band.
-- Contact CTA section with phone + WhatsApp.
+## 3. Animal imagery system
 
-**About Us** — carried-over copy (2013 founding, exclusive distributor, focus areas). Image placeholders (team, warehouse, field) clearly labeled for later replacement.
+Add reusable placeholder image slots (`AnimalImage` component) for:
+- Broiler chickens
+- Layers with eggs
+- Cows / cattle
+- Goats
+- Sheep
+- Dogs (canine range only)
 
-**Services** — product development, sales & distribution, data-driven insights, regulatory compliance assistance.
+Each uses `ImagePlaceholder` now, easy to swap for real photos later. Category → default animal(s) mapping lives in `src/lib/site.ts` alongside a new `products` array (4 per category, with `name`, `blurb`, `targets: Animal[]`).
 
-**Events** — placeholder timeline/grid ready for real event entries.
+## Technical notes
 
-**Contact** — address block, phone `0703 078 4315`, WhatsApp `0901 946 3255`, email, static map placeholder, contact form (posts to a server function stub that logs; can be wired to email later).
+- Extend `src/lib/site.ts`: add `Animal` union + `products: Product[]` (28 entries, 4 per category).
+- New `src/components/AnimalChip.tsx` (icon + label) and `src/components/AnimalImage.tsx` (placeholder with label).
+- Rewrite `src/routes/products.index.tsx` — flat 7-card grid, no group sections.
+- Rewrite `src/routes/products.$slug.tsx` — 4-card floating layout inspired by the reference, animal chips, hero image.
+- Keep existing SEO head(), breadcrumbs, WhatsApp/Contact CTAs.
+- No new dependencies; icons via inline SVG.
 
-### Global components
-
-- **Header:** sticky, transparent-to-solid on scroll, logo left, nav center, "Get in touch" pill right. Mobile: slide-over menu.
-- **Footer:** four columns (Company, Products, Contact, Social), fine legal row.
-- **Floating action buttons (all pages):** stacked bottom-right, phone (`tel:+2347030784315`) and WhatsApp (`https://wa.me/2349019463255`). Circular, brand green, subtle shadow, hover lift, safe-area padding on mobile, ARIA-labeled.
-
-### SEO & performance
-
-- Per-route `head()` with unique title, description, og:title/description/url, canonical (relative paths). Root sets sitewide defaults + Organization JSON-LD.
-- Semantic HTML, single H1 per page, alt text on all images.
-- Image placeholders use fixed aspect ratios to prevent CLS; real images later served as WebP via `vite-imagetools`.
-- Lazy-load below-the-fold imagery, preload hero.
-- `public/robots.txt` and `public/sitemap.xml` with all routes (relative base until domain confirmed).
-
-### Technical notes
-
-- Stack: TanStack Start (as in this project). Fonts via `@fontsource/instrument-serif` + `@fontsource/inter`, imported in `src/start.ts`; families registered in `src/styles.css` `@theme`.
-- Design tokens (colors, radii, shadows) defined in `src/styles.css`; all components use semantic tokens — no hard-coded colors.
-- Logo saved via `lovable-assets` from the uploaded file; used across header/footer.
-- Contact form: `createServerFn` handler that validates with Zod and returns success (email wiring can be added later with Resend when requested).
-- No auth, no database, no dashboard.
-
-### Out of scope (per your brief)
-
-- No user accounts, no login, no admin dashboard.
-- No AI-generated hero art — placeholders only for photos you'll supply.
-- Email delivery for the contact form (stub only; ready to wire on request).
+## Out of scope
+- No real product photos yet (placeholders only — you'll upload later).
+- Product data (names/descriptions) will be sensible defaults per category; you can rename in `site.ts`.

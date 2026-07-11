@@ -1,12 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/PageHero";
-import { productCategories, site } from "@/lib/site";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { AnimalChips } from "@/components/AnimalChip";
+import { productCategories, categoryAnimals, site } from "@/lib/site";
 
 export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
       { title: `Products — ${site.name}` },
-      { name: "description", content: "Explore FDH Agrovet's range of poultry vaccines, livestock vaccines, canine vaccines, poultry drugs, large animal drugs and disinfectants." },
+      { name: "description", content: "Browse FDH Agrovet's product types — poultry vaccines, livestock vaccines, canine vaccines, drugs and biosecurity." },
       { property: "og:title", content: `Products — ${site.name}` },
       { property: "og:description", content: "Vaccines, drugs and biosecurity for Nigerian animal health." },
       { property: "og:url", content: "/products" },
@@ -17,44 +19,51 @@ export const Route = createFileRoute("/products/")({
 });
 
 function ProductsIndex() {
-  const groups = ["Vaccines", "Drugs", "Biosecurity"] as const;
   return (
     <>
       <PageHero
         eyebrow="Product range"
-        title={<>Vaccines, drugs and biosecurity — sourced to a global standard.</>}
+        title={<>One product family per card — pick a type to see the full range.</>}
         intro="Our catalogue spans poultry, livestock and canine health. Every product is selected for efficacy, regulatory compliance and consistent quality."
       />
 
-      {groups.map((group) => {
-        const items = productCategories.filter((c) => c.group === group);
-        if (!items.length) return null;
-        return (
-          <section key={group} className="container-x py-14 border-b border-stone last:border-none">
-            <div className="flex items-baseline justify-between gap-6">
-              <h2 className="font-display text-3xl text-forest">{group}</h2>
-              <div className="eyebrow text-muted-foreground">{items.length} categories</div>
-            </div>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {items.map((c) => (
-                <Link
-                  key={c.slug}
-                  to="/products/$slug"
-                  params={{ slug: c.slug }}
-                  className="group block rounded-lg border border-stone bg-ivory p-8 hover:border-forest/40 hover:shadow-sm transition-all"
-                >
-                  {c.subgroup && <div className="eyebrow text-forest/70">{c.subgroup}</div>}
-                  <div className="mt-3 font-display text-2xl text-forest">{c.name}</div>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{c.blurb}</p>
-                  <div className="mt-6 text-sm text-forest group-hover:translate-x-1 transition-transform">
-                    View category →
+      <section className="container-x py-16">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {productCategories.map((c) => {
+            const animals = categoryAnimals[c.slug] ?? [];
+            return (
+              <Link
+                key={c.slug}
+                to="/products/$slug"
+                params={{ slug: c.slug }}
+                className="group flex flex-col rounded-2xl border border-stone bg-ivory overflow-hidden hover:border-forest/40 hover:shadow-lg transition-all"
+              >
+                <div className="relative">
+                  <ImagePlaceholder
+                    label={`${c.name} — ${animals.map((a) => a).join(", ")}`}
+                    aspect="4/3"
+                    className="rounded-none border-0 border-b border-stone"
+                  />
+                  <div className="absolute top-3 left-3 rounded-full bg-ivory/95 backdrop-blur px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-forest">
+                    {c.group}
                   </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        );
-      })}
+                </div>
+                <div className="flex flex-col flex-1 p-6">
+                  {c.subgroup && <div className="eyebrow text-forest/70">{c.subgroup}</div>}
+                  <h3 className="mt-2 font-display text-2xl text-forest">{c.name}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed flex-1">{c.blurb}</p>
+                  <div className="mt-4">
+                    <AnimalChips animals={animals} />
+                  </div>
+                  <div className="mt-5 text-sm font-medium text-forest group-hover:translate-x-1 transition-transform">
+                    View products →
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
     </>
   );
 }
