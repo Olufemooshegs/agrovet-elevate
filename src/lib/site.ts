@@ -17,6 +17,66 @@ export const site = {
   },
 };
 
+export type EventItem = {
+  slug: string;
+  title: string;
+  location: string;
+  date: string;
+  blurb?: string;
+  photoCount: number;
+};
+
+export const events: readonly EventItem[] = [
+  {
+    slug: "aba-2026",
+    title: "IMMUNO-IgY Seminar",
+    location: "Aba",
+    date: "2026",
+    blurb: "Farmer engagement seminar introducing the IMMUNO-IgY Booster range to poultry producers in Aba.",
+    photoCount: 6,
+  },
+  {
+    slug: "port-harcourt-2026",
+    title: "IMMUNO-IgY Seminar",
+    location: "Port Harcourt",
+    date: "2026",
+    blurb: "Regional seminar on egg-yolk antibody technology and modern flock immunity for Rivers State farmers.",
+    photoCount: 6,
+  },
+  {
+    slug: "benin-2026",
+    title: "IMMUNO-IgY Seminar",
+    location: "Benin",
+    date: "2026",
+    blurb: "Technical seminar with veterinarians and farm managers across Edo and Delta.",
+    photoCount: 6,
+  },
+  {
+    slug: "nipoli",
+    title: "Nipoli",
+    location: "Nigeria",
+    date: "",
+    blurb: "Industry gathering featuring the FDH Agrovet team.",
+    photoCount: 6,
+  },
+  {
+    slug: "egg-boss-launch-2025",
+    title: "Product Launch — Egg Boss",
+    location: "Nigeria",
+    date: "2025",
+    blurb: "Official market launch of Egg Boss, our layer performance formulation.",
+    photoCount: 6,
+  },
+  {
+    slug: "havana-cuba-2025",
+    title: "International Conference on Biotechnology",
+    location: "Havana, Cuba",
+    date: "21–27 September 2025",
+    blurb: "MD, FDH Agrovet Ibadan, representing Nigeria at the International Conference on Biotechnology in Havana.",
+    photoCount: 6,
+  },
+];
+
 type ProductCat = {
   slug: string;
   name: string;
