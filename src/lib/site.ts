@@ -65,7 +65,7 @@ export const events: readonly EventItem[] = [
     location: "Nigeria",
     date: "2025",
     blurb: "Official market launch of Egg Boss, our layer performance formulation.",
-    photoCount: 6,
+    photoCount: 3,
   },
   {
     slug: "havana-cuba-2025",
