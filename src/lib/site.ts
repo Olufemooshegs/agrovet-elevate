@@ -53,11 +53,11 @@ export const events: readonly EventItem[] = [
   },
   {
     slug: "nipoli",
-    title: "Nipoli",
-    location: "Nigeria",
-    date: "",
-    blurb: "Industry gathering featuring the FDH Agrovet team.",
-    photoCount: 6,
+    title: "NIPOLI Expo",
+    location: "Nigeria Poultry & Livestock Expo",
+    date: "2024",
+    blurb: "FDH Agrovet at the Nigeria Poultry & Livestock Expo (NIPOLI) — knowledge sharing and innovative regional advisory for the B2C market.",
+    photoCount: 4,
   },
   {
     slug: "egg-boss-launch-2025",
