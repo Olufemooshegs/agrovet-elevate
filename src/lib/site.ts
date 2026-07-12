@@ -73,7 +73,7 @@ export const events: readonly EventItem[] = [
     location: "Havana, Cuba",
     date: "21–27 September 2025",
     blurb: "MD, FDH Agrovet Ibadan, representing Nigeria at the International Conference on Biotechnology in Havana.",
-    photoCount: 6,
+    photoCount: 4,
   },
 ];
 
