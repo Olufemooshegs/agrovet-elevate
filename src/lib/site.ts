@@ -29,16 +29,18 @@ import interuac from "@/assets/partners/interuac.jpg.asset.json";
 
 export type Partner = { slug: string; name: string; country?: string; logo: string };
 
+const url = (a: { url: string } | unknown) => (a as { url: string }).url;
+
 export const partners: readonly Partner[] = [
-  { slug: "schippers", name: "MS Schippers", country: "Netherlands", logo: schippers.url },
-  { slug: "biomed", name: "Bio-Med", country: "India", logo: biomed.url },
-  { slug: "avivac", name: "AVIVAC", country: "Russia", logo: avivac.url },
-  { slug: "cavac", name: "ChoongAng Vaccine Lab (CAvac)", country: "South Korea", logo: cavac.url },
-  { slug: "apa", name: "APA United Nano Technology", country: "China", logo: apa.url },
-  { slug: "melan", name: "Melan Biotech", country: "China", logo: melan.url },
-  { slug: "platalab", name: "PlataLab — Vacunas Aviares", country: "Argentina", logo: platalab.url },
-  { slug: "medicavet", name: "MedicaVet", country: "Turkey", logo: medicavet.url },
-  { slug: "interuac", name: "Interuac (Pvt) Ltd", logo: interuac.url },
+  { slug: "schippers", name: "MS Schippers", country: "Netherlands", logo: url(schippers) },
+  { slug: "biomed", name: "Bio-Med", country: "India", logo: url(biomed) },
+  { slug: "avivac", name: "AVIVAC", country: "Russia", logo: url(avivac) },
+  { slug: "cavac", name: "ChoongAng Vaccine Lab (CAvac)", country: "South Korea", logo: url(cavac) },
+  { slug: "apa", name: "APA United Nano Technology", country: "China", logo: url(apa) },
+  { slug: "melan", name: "Melan Biotech", country: "China", logo: url(melan) },
+  { slug: "platalab", name: "PlataLab — Vacunas Aviares", country: "Argentina", logo: url(platalab) },
+  { slug: "medicavet", name: "MedicaVet", country: "Turkey", logo: url(medicavet) },
+  { slug: "interuac", name: "Interuac (Pvt) Ltd", logo: url(interuac) },
 ];
 
 export type EventItem = {
