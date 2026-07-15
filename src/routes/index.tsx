@@ -176,14 +176,25 @@ function HomePage() {
             <h2 className="mt-4 font-display text-3xl text-forest">
               Global manufacturers. Nigerian distribution.
             </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground">
+              We hold long-standing partnerships with reputable international
+              veterinary manufacturers across Europe, Asia and Latin America.
+            </p>
           </div>
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {Array.from({ length: 10 }).map((_, i) => (
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5">
+            {partners.map((p) => (
               <div
-                key={i}
-                className="aspect-[3/2] rounded-md border border-stone bg-ivory flex items-center justify-center text-xs text-muted-foreground"
+                key={p.slug}
+                title={p.country ? `${p.name} — ${p.country}` : p.name}
+                className="group relative flex aspect-[3/2] items-center justify-center rounded-lg border border-stone bg-ivory p-5 transition-all hover:-translate-y-0.5 hover:shadow-md hover:border-forest/30"
               >
-                Partner {i + 1}
+                <img
+                  src={p.logo}
+                  alt={p.name}
+                  loading="lazy"
+                  className="max-h-full max-w-full object-contain grayscale opacity-80 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                />
+                <span className="sr-only">{p.name}{p.country ? ` — ${p.country}` : ""}</span>
               </div>
             ))}
           </div>
