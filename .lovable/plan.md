@@ -1,63 +1,42 @@
-## Update Events page + structured image upload workflow
+## Fix the Partners section with real partner logos
 
-### 1. Replace the 6 generic events with real ones
+### Partners to feature (9 total, from your uploads)
 
-In `src/routes/events.tsx`, replace the placeholder `Array.from({ length: 6 })` with a typed `events` array driven from `src/lib/site.ts`:
+1. **MS Schippers** (Netherlands) — Passion for Farming
+2. **Bio-Med** — Promise for Healthier Life
+3. **AVIVAC** (Russia) — the 3rd image (blue vaccine emblem)
+4. **CAvac** — ChoongAng Vaccine Lab (South Korea)
+5. **APA United Nano Technology** (China)
+6. **Melan Biotech** (China)
+7. **PlataLab — Vacunas Aviares** (Argentina)
+8. **MedicaVet** (Turkey)
+9. **Interuac (Pvt) Ltd**
+
+### 1. Upload logos as CDN assets
+
+Upload each of the 9 files under `/mnt/user-uploads/` via `lovable-assets create` → write pointers to `src/assets/partners/<slug>.jpg.asset.json` (slugs: `schippers`, `biomed`, `avivac`, `cavac`, `apa`, `melan`, `platalab`, `medicavet`, `interuac`). Binaries stay on the CDN, not in the repo.
+
+### 2. Add typed partners data in `src/lib/site.ts`
 
 ```ts
-export type EventItem = {
-  slug: string;        // used as folder name for images
-  title: string;
-  location: string;
-  date: string;        // display string, e.g. "2026" or "21–27 Sept 2025"
-  blurb?: string;
-  photoCount: number;  // how many slots to render
-};
+export type Partner = { slug: string; name: string; country?: string; logo: string };
+export const partners: readonly Partner[] = [ /* 9 entries importing the pointer .url */ ];
 ```
 
-Seed with the 6 you listed:
+### 3. Rebuild the Partners section on the home page
 
-1. `aba-2026` — IMMUNO-IgY Seminar, Aba, 2026
-2. `port-harcourt-2026` — IMMUNO-IgY Seminar, Port Harcourt, 2026
-3. `benin-2026` — IMMUNO-IgY Seminar, Benin, 2026
-4. `nipoli` — Nipoli (no date)
-5. `egg-boss-launch-2025` — Egg Boss Product Launch, 2025
-6. `havana-cuba-2025` — MD at International Conference on Biotechnology, Havana, Cuba (21–27 Sept 2025)
+Replace the current 10 grey placeholder tiles in `src/routes/index.tsx` with a premium logo wall:
 
-Each event card keeps the same premium layout (eyebrow with date + location, title, blurb, gallery grid), but the gallery now renders exactly `photoCount` slots per event (defaulting to 6, adjustable per event).
+- Section keeps the cream band and centered eyebrow/heading.
+- Grid: 2 cols on mobile → 3 sm → 5 md, `gap-6`.
+- Each tile: white card, subtle border, rounded, generous padding, `aspect-[3/2]`, logo centered with `object-contain`, grayscale by default that lifts to full color on hover, name shown as `sr-only` (title tooltip for sighted users).
+- Lazy loading on every `<img>`.
+- No credits used (no image generation) — only the tiny `lovable-assets create` calls per file.
 
-### 2. Structured image upload workflow (credit-friendly)
+### Files touched
 
-Convention so you can drop photos in and I wire them up cheaply:
+- `src/lib/site.ts` — add `partners` array + `Partner` type.
+- `src/routes/index.tsx` — swap placeholder loop for real partner cards.
+- `src/assets/partners/*.asset.json` — 9 new pointer files.
 
-```
-src/assets/events/<event-slug>/01.jpg
-src/assets/events/<event-slug>/02.jpg
-...
-```
-
-Where `<event-slug>` is one of: `aba-2026`, `port-harcourt-2026`, `benin-2026`, `nipoli`, `egg-boss-launch-2025`, `havana-cuba-2025`.
-
-Workflow per batch you send:
-
-1. You upload photos in chat and tell me the event slug (e.g. "these 4 are for aba-2026").
-2. I run `lovable-assets create` once per file → writes `src/assets/events/<slug>/NN.jpg.asset.json` pointers (binaries stay on the CDN, not in the repo).
-3. The events page auto-discovers pointers for that slug via a Vite `import.meta.glob("./events/<slug>/*.asset.json")` helper and renders real photos in the first N slots, falling back to `ImagePlaceholder` for the remaining `photoCount - N` slots.
-
-This means:
-- **No re-editing route files** every time new photos arrive — just add pointers.
-- **No image generation** (zero image credits). Only the tiny `lovable-assets create` calls.
-- **Photos stay on the CDN**, not in git, so repo stays fast.
-- **Partial uploads are fine** — missing slots gracefully show placeholders.
-
-### 3. Files touched
-
-- `src/lib/site.ts` — add `events: EventItem[]`.
-- `src/routes/events.tsx` — render from `events`, use glob-based image loader per slug, keep current styling (heading, eyebrow, gallery grid).
-- New helper `src/lib/eventImages.ts` — small `getEventImages(slug)` using `import.meta.glob(..., { eager: true })` to return `{ url }[]`.
-
-No new dependencies, no design changes, no other pages affected.
-
-### 4. What you do next (after this plan is approved and built)
-
-Send me photos in chat and say which event slug they belong to. I'll create the pointers and they'll appear immediately — no further code changes needed unless you want to change `photoCount` or captions.
+No other pages, styles, or components change.
