@@ -17,6 +17,30 @@ export const site = {
   },
 };
 
+import schippers from "@/assets/partners/schippers.jpg.asset.json";
+import biomed from "@/assets/partners/biomed.jpg.asset.json";
+import avivac from "@/assets/partners/avivac.jpg.asset.json";
+import cavac from "@/assets/partners/cavac.jpg.asset.json";
+import apa from "@/assets/partners/apa.jpg.asset.json";
+import melan from "@/assets/partners/melan.jpg.asset.json";
+import platalab from "@/assets/partners/platalab.jpg.asset.json";
+import medicavet from "@/assets/partners/medicavet.jpg.asset.json";
+import interuac from "@/assets/partners/interuac.jpg.asset.json";
+
+export type Partner = { slug: string; name: string; country?: string; logo: string };
+
+export const partners: readonly Partner[] = [
+  { slug: "schippers", name: "MS Schippers", country: "Netherlands", logo: schippers.url },
+  { slug: "biomed", name: "Bio-Med", country: "India", logo: biomed.url },
+  { slug: "avivac", name: "AVIVAC", country: "Russia", logo: avivac.url },
+  { slug: "cavac", name: "ChoongAng Vaccine Lab (CAvac)", country: "South Korea", logo: cavac.url },
+  { slug: "apa", name: "APA United Nano Technology", country: "China", logo: apa.url },
+  { slug: "melan", name: "Melan Biotech", country: "China", logo: melan.url },
+  { slug: "platalab", name: "PlataLab — Vacunas Aviares", country: "Argentina", logo: platalab.url },
+  { slug: "medicavet", name: "MedicaVet", country: "Turkey", logo: medicavet.url },
+  { slug: "interuac", name: "Interuac (Pvt) Ltd", logo: interuac.url },
+];
+
 export type EventItem = {
   slug: string;
   title: string;
