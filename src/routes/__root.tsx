@@ -81,16 +81,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "FDH Agrovet Nigeria Limited is a veterinary pharmaceutical marketing company delivering vaccines, drugs and biosecurity solutions since 2013.",
+          "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013.",
       },
       { name: "theme-color", content: "#1F3B2D" },
       { property: "og:site_name", content: site.name },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { title: "Lovable App" },
+      { property: "og:title", content: "Lovable App" },
+      { name: "twitter:title", content: "Lovable App" },
+      { property: "og:description", content: "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013." },
+      { name: "twitter:description", content: "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e470a91b-80c9-4ce1-8ce2-5148c02b2188/id-preview-c6aee619--6981d737-0bc5-4adf-a73b-52c80d3d732d.lovable.app-1784115245121.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e470a91b-80c9-4ce1-8ce2-5148c02b2188/id-preview-c6aee619--6981d737-0bc5-4adf-a73b-52c80d3d732d.lovable.app-1784115245121.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: logo.url, type: "image/jpeg" },
     ],
     scripts: [
       {

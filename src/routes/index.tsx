@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
           "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013.",
       },
       { property: "og:title", content: `${site.name} — Animal Health Solutions` },
-      { property: "og:description", content: "Trusted veterinary vaccines, drugs and biosecurity in Nigeria." },
+      { property: "og:description", content: "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013." },
       { property: "og:url", content: "/" },
     ],
   }),
