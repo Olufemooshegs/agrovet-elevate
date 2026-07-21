@@ -19,7 +19,7 @@ const leadership: Member[] = [
 
 const marketing: Member[] = [
   { name: "Dr. Abimbola Oyewale", role: "National Marketing Manager", label: "Portrait — National Marketing Manager", aspect: "3/4" },
-  { name: "Mr. Oluwole Adenuga", role: "South West Region Marketing Manager", label: "Portrait — SW Regional Marketing Manager", aspect: "3/4", photo: oluwolePhoto },
+  { name: "Mr. Oluwole Adenuga", role: "South West Region Marketing Manager", label: "Portrait — South West Regional Marketing Manager", aspect: "3/4", photo: oluwolePhoto },
 ];
 
 const sales: Member[] = [
