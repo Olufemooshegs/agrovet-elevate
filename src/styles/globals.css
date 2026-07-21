@@ -1,0 +1,36 @@
+:root {
+  --forest: #1f3b2d;
+  --moss: #2e5d3a;
+  --sage: #7fa97f;
+  --cream: #f6f2e9;
+  --ivory: #fffdf8;
+  --charcoal: #1a1a1a;
+  --stone: #e9e4d8;
+}
+
+@theme inline {
+  --color-forest: var(--forest);
+  --color-moss: var(--moss);
+  --color-sage: var(--sage);
+  --color-cream: var(--cream);
+  --color-ivory: var(--ivory);
+  --color-charcoal: var(--charcoal);
+  --color-stone: var(--stone);
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+@utility container-x {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
