@@ -82,6 +82,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <Link
             to="/contact"
             className="hidden md:inline-flex items-center rounded-full bg-ivory px-5 py-2.5 text-sm font-medium text-forest hover:bg-cream transition-colors"
