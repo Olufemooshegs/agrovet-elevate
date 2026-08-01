@@ -74,7 +74,7 @@ export function SiteHeader() {
               key={n.to}
               to={n.to}
               className="relative rounded-full px-4 py-2 text-sm text-ivory/75 transition-all duration-200 hover:bg-ivory/10 hover:text-ivory"
-              activeProps={{ className: "bg-ivory text-forest font-medium shadow-sm" }}
+              activeProps={{ className: "bg-sage text-[#0b1611] font-medium shadow-sm" }}
               activeOptions={{ exact: n.to === "/" }}
             >
               {n.label}
@@ -86,7 +86,7 @@ export function SiteHeader() {
           <ThemeToggle />
           <Link
             to="/contact"
-            className="hidden md:inline-flex items-center rounded-full bg-ivory px-5 py-2.5 text-sm font-medium text-forest hover:bg-cream transition-colors"
+            className="hidden md:inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-sm font-medium text-[#0b1611] hover:bg-sage/90 transition-colors"
           >
             Get in touch
           </Link>
@@ -102,7 +102,7 @@ export function SiteHeader() {
                 to={n.to}
                 onClick={() => setOpen(false)}
                 className="rounded-xl px-4 py-3 text-base text-ivory/80 transition-colors hover:bg-ivory/10"
-                activeProps={{ className: "bg-ivory text-forest font-medium" }}
+                activeProps={{ className: "bg-sage text-[#0b1611] font-medium" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
                 {n.label}
@@ -111,7 +111,7 @@ export function SiteHeader() {
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-ivory px-5 py-3 text-sm font-medium text-forest"
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-sage px-5 py-3 text-sm font-medium text-[#0b1611]"
             >
               Get in touch
             </Link>
