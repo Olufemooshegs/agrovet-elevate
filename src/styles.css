@@ -123,3 +123,68 @@
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
+
+.dark {
+  --forest: #d8ecdc;
+  --moss: #8fc79b;
+  --sage: #7fa97f;
+  --cream: #12211a;
+  --ivory: #0f1c16;
+  --charcoal: #eef3ef;
+  --stone: #24382d;
+
+  --background: #0b1611;
+  --foreground: #eef3ef;
+  --card: #0f1c16;
+  --card-foreground: #eef3ef;
+  --popover: #0f1c16;
+  --popover-foreground: #eef3ef;
+  --primary: #8fc79b;
+  --primary-foreground: #0b1611;
+  --secondary: #12211a;
+  --secondary-foreground: #d8ecdc;
+  --muted: #12211a;
+  --muted-foreground: #a3b5a8;
+  --accent: #2e5d3a;
+  --accent-foreground: #eef3ef;
+  --border: #24382d;
+  --input: #24382d;
+  --ring: #8fc79b;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  img {
+    content-visibility: auto;
+  }
+}
+
+@utility hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -24px color-mix(in oklab, var(--forest) 60%, transparent);
+  }
+}
+
+@utility rule-gradient {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--stone), transparent);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+@utility fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
