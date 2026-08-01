@@ -16,9 +16,33 @@ export const Route = createFileRoute("/")({
         content:
           "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013.",
       },
+      { name: "keywords", content: "veterinary vaccines Nigeria, poultry drugs, livestock health, biosecurity, agrovet Ibadan" },
       { property: "og:title", content: `${site.name} — Animal Health Solutions` },
       { property: "og:description", content: "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013." },
       { property: "og:url", content: "/" },
+      { name: "twitter:title", content: `${site.name} — Animal Health Solutions` },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: site.name,
+          image: logo.url,
+          telephone: site.phoneIntl,
+          email: site.email,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Ibadan",
+            addressRegion: "Oyo State",
+            addressCountry: "NG",
+          },
+          areaServed: "Nigeria",
+          url: "/",
+        }),
+      },
     ],
   }),
   component: HomePage,
@@ -186,14 +210,21 @@ function HomePage() {
               <div
                 key={p.slug}
                 title={p.country ? `${p.name} — ${p.country}` : p.name}
-                className="group relative flex aspect-[3/2] items-center justify-center rounded-lg border border-stone bg-ivory p-5 transition-all hover:-translate-y-0.5 hover:shadow-md hover:border-forest/30"
+                className="group relative flex aspect-[3/2] items-center justify-center rounded-lg border border-stone bg-ivory p-5 hover-lift"
               >
-                <img
-                  src={p.logo}
-                  alt={p.name}
-                  loading="lazy"
-                  className="max-h-full max-w-full object-contain grayscale opacity-80 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-                />
+                {p.logo ? (
+                  <img
+                    src={p.logo}
+                    alt={p.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="max-h-full max-w-full object-contain grayscale opacity-80 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  />
+                ) : (
+                  <span className="text-center font-display text-lg leading-tight text-forest">
+                    {p.name.split("—")[0]}
+                  </span>
+                )}
                 <span className="sr-only">{p.name}{p.country ? ` — ${p.country}` : ""}</span>
               </div>
             ))}
