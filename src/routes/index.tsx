@@ -210,14 +210,21 @@ function HomePage() {
               <div
                 key={p.slug}
                 title={p.country ? `${p.name} — ${p.country}` : p.name}
-                className="group relative flex aspect-[3/2] items-center justify-center rounded-lg border border-stone bg-ivory p-5 transition-all hover:-translate-y-0.5 hover:shadow-md hover:border-forest/30"
+                className="group relative flex aspect-[3/2] items-center justify-center rounded-lg border border-stone bg-ivory p-5 hover-lift"
               >
-                <img
-                  src={p.logo}
-                  alt={p.name}
-                  loading="lazy"
-                  className="max-h-full max-w-full object-contain grayscale opacity-80 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-                />
+                {p.logo ? (
+                  <img
+                    src={p.logo}
+                    alt={p.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="max-h-full max-w-full object-contain grayscale opacity-80 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  />
+                ) : (
+                  <span className="text-center font-display text-lg leading-tight text-forest">
+                    {p.name.split("—")[0]}
+                  </span>
+                )}
                 <span className="sr-only">{p.name}{p.country ? ` — ${p.country}` : ""}</span>
               </div>
             ))}
