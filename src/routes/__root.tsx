@@ -84,12 +84,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013.",
       },
       { name: "theme-color", content: "#1F3B2D" },
+      { name: "author", content: site.name },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:site_name", content: site.name },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_NG" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "Lovable App" },
-      { property: "og:title", content: "Lovable App" },
-      { name: "twitter:title", content: "Lovable App" },
       { property: "og:description", content: "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013." },
       { name: "twitter:description", content: "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e470a91b-80c9-4ce1-8ce2-5148c02b2188/id-preview-c6aee619--6981d737-0bc5-4adf-a73b-52c80d3d732d.lovable.app-1784115245121.png" },
@@ -97,20 +97,47 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico" },
     ],
     scripts: [
+      {
+        children:
+          "try{var t=localStorage.getItem('fdh-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(t==='dark')document.documentElement.classList.add('dark')}catch(e){}",
+      },
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
           name: site.name,
+          alternateName: site.short,
           url: "/",
           logo: logo.url,
+          description:
+            "Nigerian veterinary pharmaceutical marketing company supplying vaccines, poultry and livestock drugs, and biosecurity products since 2013.",
           telephone: site.phoneIntl,
           email: site.email,
-          address: { "@type": "PostalAddress", addressCountry: "NG", addressLocality: "Lagos" },
+          address: { "@type": "PostalAddress", addressCountry: "NG", addressRegion: "Oyo State", addressLocality: "Ibadan" },
           foundingDate: `${site.yearFounded}`,
+          sameAs: [site.social.facebook, site.social.linkedin, site.social.instagram],
+          contactPoint: [
+            {
+              "@type": "ContactPoint",
+              telephone: site.phoneIntl,
+              contactType: "customer service",
+              areaServed: "NG",
+              availableLanguage: ["English"],
+            },
+          ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: site.name,
+          url: "/",
         }),
       },
     ],
