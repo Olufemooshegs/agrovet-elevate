@@ -16,9 +16,33 @@ export const Route = createFileRoute("/")({
         content:
           "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013.",
       },
+      { name: "keywords", content: "veterinary vaccines Nigeria, poultry drugs, livestock health, biosecurity, agrovet Ibadan" },
       { property: "og:title", content: `${site.name} — Animal Health Solutions` },
       { property: "og:description", content: "Veterinary vaccines, poultry & livestock drugs, and biosecurity from FDH Agrovet — a trusted Nigerian veterinary pharmaceutical marketing company since 2013." },
       { property: "og:url", content: "/" },
+      { name: "twitter:title", content: `${site.name} — Animal Health Solutions` },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: site.name,
+          image: logo.url,
+          telephone: site.phoneIntl,
+          email: site.email,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Ibadan",
+            addressRegion: "Oyo State",
+            addressCountry: "NG",
+          },
+          areaServed: "Nigeria",
+          url: "/",
+        }),
+      },
     ],
   }),
   component: HomePage,
