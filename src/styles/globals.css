@@ -1,3 +1,6 @@
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
 :root {
   --forest: #1f3b2d;
   --moss: #2e5d3a;

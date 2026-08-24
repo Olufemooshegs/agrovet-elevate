@@ -85,7 +85,7 @@ export function ProductDetailPage() {
         <div className="mt-10 rounded-2xl border border-stone bg-cream p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <div className="eyebrow text-forest/70">Need something not listed?</div>
-            <p className="mt-2 font-display text-2xl text-forest">Talk to our veterinary team.</p>
+            <p className="mt-2 font-display text-2xl text-forest">Talk to our team.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Link to="/contact" className="inline-flex items-center rounded-full bg-forest px-5 py-2.5 text-sm font-medium text-ivory hover:bg-moss">Contact us</Link>
