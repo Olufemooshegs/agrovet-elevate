@@ -1,13 +1,13 @@
 export const site = {
   name: "FDH Agrovet Nigeria Limited",
   short: "FDH Agrovet",
-  tagline: "Advancing animal health across Nigeria",
+  tagline: "Supporting Agro-Veterinary Industry with innovations and premium products",
   phone: "07030784315",
   phoneIntl: "+2347030784315",
   whatsapp: "09019463255",
   whatsappIntl: "+2349019463255",
   whatsappLink: "https://wa.me/2349019463255",
-  email: "info@fdhagrovet.com.ng",
+  email: "info@fdhagrovet.com",
   address: "Ibadan, Oyo State",
   yearFounded: 2013,
   social: {
@@ -128,8 +128,8 @@ export const productCategories: readonly ProductCat[] = [
       "Inactivated oil-emulsion vaccines delivering long, durable protective immunity.",
   },
   {
-    slug: "livestock-vaccines",
-    name: "Livestock Vaccines",
+    slug: "large-animal-vaccines",
+    name: "Large Animal Vaccines",
     group: "Vaccines",
     blurb:
       "Vaccines formulated for cattle, sheep and goat herds across Nigerian farms.",
@@ -140,6 +140,13 @@ export const productCategories: readonly ProductCat[] = [
     group: "Vaccines",
     blurb:
       "Core and non-core canine vaccines meeting international veterinary standards.",
+  },
+  {
+    slug: "pet-vaccines",
+    name: "Pet Vaccines",
+    group: "Vaccines",
+    blurb:
+      "Vaccines for cats and companion animals, covering core and lifestyle-based protection.",
   },
   {
     slug: "poultry",
@@ -173,7 +180,8 @@ export type Animal =
   | "cattle"
   | "goats"
   | "sheep"
-  | "dogs";
+  | "dogs"
+  | "cats";
 
 export const animalLabel: Record<Animal, string> = {
   broilers: "Broilers",
@@ -182,13 +190,15 @@ export const animalLabel: Record<Animal, string> = {
   goats: "Goats",
   sheep: "Sheep",
   dogs: "Dogs",
+  cats: "Cats",
 };
 
 export const categoryAnimals: Record<string, Animal[]> = {
   "live-vaccines": ["broilers", "layers"],
   "oil-vaccines": ["layers", "broilers"],
-  "livestock-vaccines": ["cattle", "goats", "sheep"],
+  "large-animal-vaccines": ["cattle", "goats", "sheep"],
   "canine-vaccines": ["dogs"],
+  "pet-vaccines": ["cats", "dogs"],
   poultry: ["broilers", "layers"],
   "large-animal-drugs": ["cattle", "goats", "sheep"],
   disinfectant: ["broilers", "layers", "cattle"],
@@ -213,15 +223,20 @@ export const products: readonly Product[] = [
   { slug: "ai-h9", category: "oil-vaccines", name: "Avian Influenza H9", blurb: "Inactivated oil vaccine supporting flock immunity against H9.", targets: ["layers", "broilers"] },
   { slug: "multi-oil-breeder", category: "oil-vaccines", name: "Multivalent Breeder Oil", blurb: "Combined inactivated vaccine formulated for breeding flocks.", targets: ["layers"] },
 
-  { slug: "ppr-vaccine", category: "livestock-vaccines", name: "PPR Vaccine", blurb: "Protection against Peste des Petits Ruminants in sheep and goats.", targets: ["sheep", "goats"] },
-  { slug: "cbpp", category: "livestock-vaccines", name: "CBPP Vaccine", blurb: "Vaccine against Contagious Bovine Pleuropneumonia in cattle.", targets: ["cattle"] },
-  { slug: "blackleg", category: "livestock-vaccines", name: "Blackleg", blurb: "Prevention of clostridial blackleg disease in cattle herds.", targets: ["cattle"] },
-  { slug: "anthrax-spore", category: "livestock-vaccines", name: "Anthrax Spore", blurb: "Spore vaccine providing annual anthrax protection for livestock.", targets: ["cattle", "sheep", "goats"] },
+  { slug: "ppr-vaccine", category: "large-animal-vaccines", name: "PPR Vaccine", blurb: "Protection against Peste des Petits Ruminants in sheep and goats.", targets: ["sheep", "goats"] },
+  { slug: "cbpp", category: "large-animal-vaccines", name: "CBPP Vaccine", blurb: "Vaccine against Contagious Bovine Pleuropneumonia in cattle.", targets: ["cattle"] },
+  { slug: "blackleg", category: "large-animal-vaccines", name: "Blackleg", blurb: "Prevention of clostridial blackleg disease in cattle herds.", targets: ["cattle"] },
+  { slug: "anthrax-spore", category: "large-animal-vaccines", name: "Anthrax Spore", blurb: "Spore vaccine providing annual anthrax protection for livestock.", targets: ["cattle", "sheep", "goats"] },
 
   { slug: "rabies", category: "canine-vaccines", name: "Rabies", blurb: "Annual rabies vaccine meeting international veterinary standards.", targets: ["dogs"] },
   { slug: "dhppi", category: "canine-vaccines", name: "DHPPi", blurb: "Core multivalent vaccine for distemper, hepatitis, parvo and parainfluenza.", targets: ["dogs"] },
   { slug: "lepto", category: "canine-vaccines", name: "Leptospira", blurb: "Vaccine against canine leptospirosis for at-risk dogs.", targets: ["dogs"] },
   { slug: "kennel-cough", category: "canine-vaccines", name: "Kennel Cough", blurb: "Bordetella vaccine for dogs in kennels or high-contact environments.", targets: ["dogs"] },
+
+  { slug: "feline-core", category: "pet-vaccines", name: "Feline Core Vaccine", blurb: "Combined vaccine for feline panleukopenia, rhinotracheitis and calicivirus.", targets: ["cats"] },
+  { slug: "feline-rabies", category: "pet-vaccines", name: "Feline Rabies", blurb: "Annual rabies protection for cats in high-risk and urban environments.", targets: ["cats"] },
+  { slug: "feline-fiv", category: "pet-vaccines", name: "FIV Vaccine", blurb: "Vaccine against Feline Immunodeficiency Virus for outdoor and at-risk cats.", targets: ["cats"] },
+  { slug: "feline-felv", category: "pet-vaccines", name: "FeLV Vaccine", blurb: "Protection against Feline Leukemia Virus for cats with outdoor exposure.", targets: ["cats"] },
 
   { slug: "immuno-igy-booster", category: "poultry", name: "IMMUNO IgY Booster", blurb: "Egg-yolk antibody booster for early flock immunity support.", targets: ["broilers", "layers"] },
   { slug: "coccistop", category: "poultry", name: "Coccistop", blurb: "Coccidiostat for prevention and control of coccidiosis in poultry.", targets: ["broilers", "layers"] },
